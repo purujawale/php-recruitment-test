@@ -10,10 +10,10 @@
 
     <title>Cache Warmer</title>
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -31,24 +31,6 @@
         <h1>Cache Warmer</h1>
         <?php if ($this->user): ?>
             <p class="bg-success">Hello <?= $this->user->getDisplayName() ?>!</p>
-
-            <div class="padded">
-                <form class="form-inline" method="post" action="/website">
-                    <div class="form-group">
-                        <label for="exampleInputName2">Name</label>
-                        <input type="text" name="name" class="form-control" id="exampleInputName2"
-                               placeholder="My Website">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputUrl2">Hostname</label>
-                        <input type="text" name="hostname" class="form-control" id="exampleInputUrl2"
-                               placeholder="website.org">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Website</button>
-                </form>
-            </div>
-
-
             <div class="padded">
                 <table class="table table-striped">
                     <tr>
@@ -64,6 +46,39 @@
                         </tr>
                     <?php endforeach ?>
                 </table>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Total number of pages</th>
+                        <th class="text-center" scope="col">Least recently visited page</th>
+                        <th class="text-center" scope="col">Most recently visited page</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center"><?= $this->getTotalPages() ?? '-' ?></td>
+                        <td class="text-center"><?= $this->getLeastRecentlyVisitedPage() ?? '-' ?></td>
+                        <td class="text-center"><?= $this->getMostRecentlyVisitedPage() ?? '-' ?></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="padded">
+                <form class="form-inline" method="post" action="/website">
+                    <div class="form-group">
+                        <label for="exampleInputName2">Name</label>
+                        <input type="text" name="name" class="form-control" id="exampleInputName2"
+                               placeholder="My Website">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUrl2">Hostname</label>
+                        <input type="text" name="hostname" class="form-control" id="exampleInputUrl2"
+                               placeholder="website.org">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Website</button>
+                </form>
             </div>
         <?php endif ?>
     </div>
